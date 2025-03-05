@@ -1,0 +1,176 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-05 23:30:21.846055",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_information_section",
+  "gift_voucher_code",
+  "initial_balance",
+  "current_balance",
+  "column_break_wfoc",
+  "status",
+  "expiration_date",
+  "issue_date",
+  "voucher_type_and_usage_section",
+  "type",
+  "percentage_discount",
+  "max_discount_per_transaction",
+  "usage_limit_per_transaction",
+  "column_break_zscp",
+  "partial_redemption_allowed",
+  "allowed_payment_methods",
+  "buyer_and_redemption_details_section",
+  "buyer_details",
+  "anonymous_use_allowed",
+  "column_break_vois",
+  "redemption_count",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "gift_voucher_code",
+   "fieldtype": "Link",
+   "label": "Gift Voucher Code",
+   "options": "Serial No"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Gift Voucher",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "basic_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "fieldname": "initial_balance",
+   "fieldtype": "Currency",
+   "label": "Initial Balance"
+  },
+  {
+   "fieldname": "current_balance",
+   "fieldtype": "Currency",
+   "label": "Current Balance"
+  },
+  {
+   "fieldname": "expiration_date",
+   "fieldtype": "Date",
+   "label": "Expiration Date"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nActive\nExpired\nRedeemed"
+  },
+  {
+   "fieldname": "issue_date",
+   "fieldtype": "Date",
+   "label": "Issue Date"
+  },
+  {
+   "fieldname": "voucher_type_and_usage_section",
+   "fieldtype": "Section Break",
+   "label": "Voucher Type and Usage"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "\nFixed Amount\nPercentage"
+  },
+  {
+   "fieldname": "percentage_discount",
+   "fieldtype": "Percent",
+   "label": "Percentage Discount"
+  },
+  {
+   "fieldname": "max_discount_per_transaction",
+   "fieldtype": "Currency",
+   "label": "Max Discount Per Transaction"
+  },
+  {
+   "fieldname": "usage_limit_per_transaction",
+   "fieldtype": "Currency",
+   "label": "Usage Limit Per Transaction"
+  },
+  {
+   "default": "0",
+   "fieldname": "partial_redemption_allowed",
+   "fieldtype": "Check",
+   "label": "Partial Redemption Allowed"
+  },
+  {
+   "fieldname": "allowed_payment_methods",
+   "fieldtype": "Data",
+   "label": "Allowed Payment Methods"
+  },
+  {
+   "fieldname": "buyer_and_redemption_details_section",
+   "fieldtype": "Section Break",
+   "label": "Buyer and Redemption Details"
+  },
+  {
+   "fieldname": "buyer_details",
+   "fieldtype": "Link",
+   "label": "Buyer Details",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "redemption_count",
+   "fieldtype": "Int",
+   "label": "Redemption Count"
+  },
+  {
+   "default": "0",
+   "fieldname": "anonymous_use_allowed",
+   "fieldtype": "Check",
+   "label": "Anonymous Use Allowed"
+  },
+  {
+   "fieldname": "column_break_wfoc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_zscp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_vois",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-03-06 00:12:19.032917",
+ "modified_by": "Administrator",
+ "module": "Retail",
+ "name": "Gift Voucher",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
