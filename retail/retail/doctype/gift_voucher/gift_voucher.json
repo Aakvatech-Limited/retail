@@ -1,6 +1,6 @@
 {
  "actions": [],
- "allow_rename": 1,
+ "autoname": "format:GV-{YYYY}{MM}{DD}-{#####}",
  "creation": "2025-03-05 23:30:21.846055",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -30,20 +30,13 @@
  ],
  "fields": [
   {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.docstatus == 1",
    "fieldname": "gift_voucher_code",
    "fieldtype": "Link",
    "label": "Gift Voucher Code",
-   "options": "Serial No"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Gift Voucher",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "options": "Serial No",
+   "read_only": 1
   },
   {
    "fieldname": "basic_information_section",
@@ -53,7 +46,9 @@
   {
    "fieldname": "initial_balance",
    "fieldtype": "Currency",
-   "label": "Initial Balance"
+   "in_list_view": 1,
+   "label": "Initial Balance",
+   "reqd": 1
   },
   {
    "fieldname": "current_balance",
@@ -84,8 +79,10 @@
   {
    "fieldname": "type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Type",
-   "options": "\nFixed Amount\nPercentage"
+   "options": "\nFixed Amount\nPercentage",
+   "reqd": 1
   },
   {
    "fieldname": "percentage_discount",
@@ -146,15 +143,26 @@
   {
    "fieldname": "column_break_vois",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Gift Voucher",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-03-06 00:12:19.032917",
+ "modified": "2025-03-09 10:10:36.039343",
  "modified_by": "Administrator",
  "module": "Retail",
  "name": "Gift Voucher",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
