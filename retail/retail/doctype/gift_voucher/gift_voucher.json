@@ -5,6 +5,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "bulk_creation_section",
+  "is_bulk",
+  "bulk_qty",
   "basic_information_section",
   "gift_voucher_code",
   "initial_balance",
@@ -29,15 +32,6 @@
   "amended_from"
  ],
  "fields": [
-  {
-   "allow_on_submit": 1,
-   "depends_on": "eval:doc.docstatus == 1",
-   "fieldname": "gift_voucher_code",
-   "fieldtype": "Link",
-   "label": "Gift Voucher Code",
-   "options": "Serial No",
-   "read_only": 1
-  },
   {
    "fieldname": "basic_information_section",
    "fieldtype": "Section Break",
@@ -81,8 +75,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Type",
-   "options": "\nFixed Amount\nPercentage",
-   "reqd": 1
+   "options": "\nFixed Amount\nPercentage"
   },
   {
    "fieldname": "percentage_discount",
@@ -153,12 +146,41 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.docstatus == 1",
+   "fieldname": "gift_voucher_code",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Gift Voucher Code",
+   "options": "Serial No",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.__islocal == 1",
+   "fieldname": "bulk_creation_section",
+   "fieldtype": "Section Break",
+   "label": "Bulk Creation"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_bulk",
+   "fieldtype": "Check",
+   "label": "Is Bulk"
+  },
+  {
+   "depends_on": "eval:doc.is_bulk",
+   "fieldname": "bulk_qty",
+   "fieldtype": "Int",
+   "label": "Bulk Qty",
+   "mandatory_depends_on": "eval:doc.is_bulk"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-03-09 10:10:36.039343",
+ "modified": "2025-03-10 20:46:58.983472",
  "modified_by": "Administrator",
  "module": "Retail",
  "name": "Gift Voucher",
