@@ -1,8 +1,6 @@
 frappe.ui.form.on("Sales Invoice", {
-  refresh: function (frm) {
-    console.log("Sales Invoice refresh");
-  },
   setup(frm) {
+    // filter - `Created` Gift Vouchers
     frm.set_query(
       "custom_gift_voucher_code",
       "items",
@@ -10,6 +8,18 @@ frappe.ui.form.on("Sales Invoice", {
         return {
           filters: {
             status: "Created",
+          },
+        };
+      }
+    );
+    // filter - `Active` Gift Vouchers
+    frm.set_query(
+      "custom_gift_voucher_code",
+      "payments",
+      function (doc, cdt, cdn) {
+        return {
+          filters: {
+            status: "Active",
           },
         };
       }
