@@ -43,7 +43,7 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Sales Invoice" : "public/js/sales_invoice.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -84,6 +84,9 @@ app_license = "mit"
 
 # before_install = "retail.install.before_install"
 # after_install = "retail.install.after_install"
+after_migrate = [ 
+    "retail.patches.custom_fields.add_custom_fields_sales_invoice.execute"
+]
 
 # Uninstallation
 # ------------
@@ -137,13 +140,17 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	 "Sales Invoice": {
+
+        "on_submit": [
+
+            "retail.doc_events.sales_invoice.activate_gift_voucher",
+            
+        ],
+
+    },
+}
 
 # Scheduled Tasks
 # ---------------

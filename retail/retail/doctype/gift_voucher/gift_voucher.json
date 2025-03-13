@@ -14,21 +14,12 @@
   "current_balance",
   "column_break_wfoc",
   "status",
-  "expiration_date",
   "issue_date",
-  "voucher_type_and_usage_section",
-  "type",
-  "percentage_discount",
-  "max_discount_per_transaction",
-  "usage_limit_per_transaction",
-  "column_break_zscp",
-  "partial_redemption_allowed",
-  "allowed_payment_methods",
+  "expiration_date",
+  "expiry_days",
   "buyer_and_redemption_details_section",
-  "buyer_details",
-  "anonymous_use_allowed",
-  "column_break_vois",
   "redemption_count",
+  "column_break_vois",
   "amended_from"
  ],
  "fields": [
@@ -45,20 +36,23 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "current_balance",
    "fieldtype": "Currency",
    "label": "Current Balance"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "expiration_date",
    "fieldtype": "Date",
    "label": "Expiration Date"
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "\nActive\nExpired\nRedeemed"
+   "options": "\nCreated\nActive\nExpired\nRedeemed"
   },
   {
    "fieldname": "issue_date",
@@ -66,71 +60,18 @@
    "label": "Issue Date"
   },
   {
-   "fieldname": "voucher_type_and_usage_section",
-   "fieldtype": "Section Break",
-   "label": "Voucher Type and Usage"
-  },
-  {
-   "fieldname": "type",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Type",
-   "options": "\nFixed Amount\nPercentage"
-  },
-  {
-   "fieldname": "percentage_discount",
-   "fieldtype": "Percent",
-   "label": "Percentage Discount"
-  },
-  {
-   "fieldname": "max_discount_per_transaction",
-   "fieldtype": "Currency",
-   "label": "Max Discount Per Transaction"
-  },
-  {
-   "fieldname": "usage_limit_per_transaction",
-   "fieldtype": "Currency",
-   "label": "Usage Limit Per Transaction"
-  },
-  {
-   "default": "0",
-   "fieldname": "partial_redemption_allowed",
-   "fieldtype": "Check",
-   "label": "Partial Redemption Allowed"
-  },
-  {
-   "fieldname": "allowed_payment_methods",
-   "fieldtype": "Data",
-   "label": "Allowed Payment Methods"
-  },
-  {
    "fieldname": "buyer_and_redemption_details_section",
    "fieldtype": "Section Break",
-   "label": "Buyer and Redemption Details"
+   "label": "Redemption Details"
   },
   {
-   "fieldname": "buyer_details",
-   "fieldtype": "Link",
-   "label": "Buyer Details",
-   "options": "Customer"
-  },
-  {
+   "allow_on_submit": 1,
    "fieldname": "redemption_count",
    "fieldtype": "Int",
    "label": "Redemption Count"
   },
   {
-   "default": "0",
-   "fieldname": "anonymous_use_allowed",
-   "fieldtype": "Check",
-   "label": "Anonymous Use Allowed"
-  },
-  {
    "fieldname": "column_break_wfoc",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_zscp",
    "fieldtype": "Column Break"
   },
   {
@@ -175,12 +116,21 @@
    "fieldtype": "Int",
    "label": "Bulk Qty",
    "mandatory_depends_on": "eval:doc.is_bulk"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "90",
+   "fieldname": "expiry_days",
+   "fieldtype": "Int",
+   "label": "Expiry Days",
+   "reqd": 1
   }
  ],
+ "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-03-10 20:46:58.983472",
+ "modified": "2025-03-13 12:26:40.827409",
  "modified_by": "Administrator",
  "module": "Retail",
  "name": "Gift Voucher",
@@ -200,7 +150,9 @@
    "write": 1
   }
  ],
+ "search_fields": "initial_balance",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "status"
 }
