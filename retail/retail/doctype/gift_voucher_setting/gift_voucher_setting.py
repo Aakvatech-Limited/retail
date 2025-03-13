@@ -12,11 +12,13 @@ class GiftVoucherSetting(Document):
             create_or_enable_gift_voucher_liability_account()
             create_or_enable_gift_voucher_revenue_account()
             enable_gift_voucher_item()
+            create_or_enable_mode_of_payment()
         else:
             disable_gift_voucher_item()
             disable_gift_voucher_redeemed_account()
             disable_gift_voucher_liability_account()
             disable_gift_voucher_revenue_account()
+            disable_mode_of_payment()
 
 
 def get_company_details():
@@ -162,3 +164,37 @@ def disable_gift_voucher_revenue_account():
     if frappe.db.exists("Account", account_name):
         frappe.db.set_value("Account", account_name, "disabled", 1)
         frappe.msgprint(f"Account '{account_name}' has been disabled.")
+
+def create_or_enable_mode_of_payment():
+    """Create or enable 'Gift Voucher' mode of payment and link to the redeemed account."""
+    default_company, company_abbr = get_company_details()
+    mode_of_payment = "Gift Voucher"
+    default_account = f"Gift Voucher Redeemed - {company_abbr}"
+
+    if frappe.db.exists("Mode of Payment", mode_of_payment):
+        frappe.db.set_value("Mode of Payment", mode_of_payment, "enabled", 1)
+        frappe.msgprint(f"Mode of Payment '{mode_of_payment}' enabled and linked to '{default_account}'.")
+    else:
+        mode_of_payment_doc = frappe.get_doc({
+            "doctype": "Mode of Payment",
+            "mode_of_payment": mode_of_payment,
+            "type": "General",
+            "enabled": 1,
+            "accounts": [
+                {
+                    "company": default_company,
+                    "default_account": default_account
+                }
+            ]
+        })
+        mode_of_payment_doc.insert(ignore_permissions=True)
+        frappe.msgprint(f"Mode of Payment '{mode_of_payment}' created and linked to '{default_account}'.")
+
+
+def disable_mode_of_payment():
+    """Disable the 'Gift Voucher' mode of payment if it exists."""
+    mode_of_payment = "Gift Voucher"
+
+    if frappe.db.exists("Mode of Payment", mode_of_payment):
+        frappe.db.set_value("Mode of Payment", mode_of_payment, "enabled", 0)
+        frappe.msgprint(f"Mode of Payment '{mode_of_payment}' has been disabled.")
