@@ -10,7 +10,7 @@
   "bulk_qty",
   "basic_information_section",
   "gift_voucher_code",
-  "initial_balance",
+  "opening_balance",
   "current_balance",
   "column_break_wfoc",
   "status",
@@ -29,35 +29,34 @@
    "label": "Basic Information"
   },
   {
-   "fieldname": "initial_balance",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Initial Balance",
-   "reqd": 1
-  },
-  {
    "allow_on_submit": 1,
    "fieldname": "current_balance",
    "fieldtype": "Currency",
-   "label": "Current Balance"
+   "label": "Current Balance",
+   "precision": "2",
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "expiration_date",
    "fieldtype": "Date",
-   "label": "Expiration Date"
+   "label": "Expiration Date",
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "\nCreated\nActive\nExpired\nRedeemed"
+   "options": "\nCreated\nActive\nExpired\nRedeemed",
+   "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "issue_date",
    "fieldtype": "Date",
-   "label": "Issue Date"
+   "label": "Issue Date",
+   "read_only": 1
   },
   {
    "fieldname": "buyer_and_redemption_details_section",
@@ -68,7 +67,8 @@
    "allow_on_submit": 1,
    "fieldname": "redemption_count",
    "fieldtype": "Int",
-   "label": "Redemption Count"
+   "label": "Redemption Count",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_wfoc",
@@ -89,13 +89,10 @@
    "search_index": 1
   },
   {
-   "allow_on_submit": 1,
    "depends_on": "eval:doc.docstatus == 1",
    "fieldname": "gift_voucher_code",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
+   "fieldtype": "Data",
    "label": "Gift Voucher Code",
-   "options": "Serial No",
    "read_only": 1
   },
   {
@@ -124,13 +121,21 @@
    "fieldtype": "Int",
    "label": "Expiry Days",
    "reqd": 1
+  },
+  {
+   "fieldname": "opening_balance",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Opening Balance",
+   "precision": "2",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-03-13 12:26:40.827409",
+ "modified": "2025-03-15 19:36:24.733608",
  "modified_by": "Administrator",
  "module": "Retail",
  "name": "Gift Voucher",
@@ -150,9 +155,10 @@
    "write": 1
   }
  ],
- "search_fields": "initial_balance",
+ "search_fields": "opening_balance",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "status"
+ "title_field": "status",
+ "track_changes": 1
 }

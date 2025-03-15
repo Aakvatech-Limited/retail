@@ -144,7 +144,8 @@ doc_events = {
 	 "Sales Invoice": {
         "on_submit": [
             "retail.doc_events.sales_invoice.activate_gift_voucher",
-            "retail.doc_events.sales_invoice.validate_gift_voucher_for_redeemed",  
+            "retail.doc_events.sales_invoice.validate_gift_voucher_for_redeemed",
+            "retail.doc_events.sales_invoice.create_gift_voucher_journal_entry",  
         ],
         
     },

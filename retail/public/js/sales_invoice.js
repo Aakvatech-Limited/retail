@@ -8,6 +8,7 @@ frappe.ui.form.on("Sales Invoice", {
         return {
           filters: {
             status: "Created",
+            docstatus: 1,
           },
         };
       }
@@ -36,13 +37,15 @@ frappe.ui.form.on("Sales Invoice Item", {
         .get_value(
           "Gift Voucher",
           row.custom_gift_voucher_code,
-          "initial_balance"
+          "opening_balance"
         )
         .then((r) => {
-          if (r.message.initial_balance) {
-            frappe.model.set_value(cdt, cdn, "rate", r.message.initial_balance);
+          if (r.message.opening_balance) {
+            frappe.model.set_value(cdt, cdn, "rate", r.message.opening_balance);
           }
         });
     }
   },
 });
+
+frappe.ui.form.on("Sales Invoice Payment", {});

@@ -24,7 +24,7 @@ def execute():
              {
                 "fieldname": "custom_gift_voucher_amount",
                 "fieldtype": "Currency",
-                "fetch_from": "custom_gift_voucher_code.initial_balance",
+                "fetch_from": "custom_gift_voucher_code.opening_balance",
                 "insert_after": "custom_gift_voucher_code",
                 "label": "Gift Voucher Amount",
                 "no_copy": 1,
