@@ -154,23 +154,13 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"retail.tasks.all"
-# 	],
-# 	"daily": [
-# 		"retail.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"retail.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"retail.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"retail.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+    "cron": {
+        "0 0 * * *": [
+            "retail.scheduled_tasks.check_gift_voucher_status"
+        ]
+    }
+}
 
 # Testing
 # -------
