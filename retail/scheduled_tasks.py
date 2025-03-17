@@ -5,15 +5,8 @@ def check_gift_voucher_status():
     """Checks and updates the status of Gift Vouchers based on balance and expiry"""
     
     try:
-        # 1️⃣ Check for fully redeemed vouchers
-        redeemed_vouchers = frappe.get_all("Gift Voucher", filters={"status": "Active", "current_balance": 0}, fields=["name"])
-        for voucher in redeemed_vouchers:
-            try:
-                frappe.db.set_value("Gift Voucher", voucher.name, "status", "Redeemed")
-            except Exception as e:
-                frappe.log_error(f"Error updating status to Redeemed for {voucher.name}: {str(e)}")
-
-        # 2️⃣ Check for expired vouchers and create journal entries
+        
+        # Check for expired vouchers and create journal entries
         expired_vouchers = frappe.get_all("Gift Voucher", filters={"status": "Active", "expiration_date": ("<=", today())}, fields=["name", "current_balance"])
         for voucher in expired_vouchers:
             try:
