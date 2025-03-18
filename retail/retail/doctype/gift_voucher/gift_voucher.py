@@ -17,11 +17,11 @@ class GiftVoucher(Document):
         # Set initial status to 'Created'
         self.status = "Created"
         self.current_balance = self.opening_balance
-        self.gift_voucher_code = self.name
-
+    
     def before_save(self):
         if self.status == "Created":
             self.current_balance = self.opening_balance
+            self.gift_voucher_code = self.name
 
 
     def create_bulk_vouchers(self):
